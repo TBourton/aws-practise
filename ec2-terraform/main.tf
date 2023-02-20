@@ -44,7 +44,7 @@ resource "aws_security_group" "tb-sg" {
   // To Allow Port 80 Transport
   ingress {
     from_port = 80
-    protocol = ""
+    protocol = "-1"
     to_port = 80
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -71,13 +71,10 @@ resource "aws_instance" "tb-ec2" {
     aws_security_group.tb-sg.id
   ]
   root_block_device {
-    delete_on_termination = true
-    iops = 150
     volume_size = 50
-    volume_type = "gp2"
   }
   tags = {
-    Name ="SERVER01"
+    Name = "tom bourton ec2 terraform"
     Environment = "DEV"
     OS = "UBUNTU"
     Managed = "TOMBOURTON"
